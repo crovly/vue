@@ -1,0 +1,36 @@
+{
+  "name": "@crovly/vue",
+  "version": "1.0.0",
+  "description": "Official Crovly Vue 3 SDK — captcha component and composable",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["crovly", "captcha", "vue", "vue3", "pow", "proof-of-work", "bot-protection"],
+  "author": "Crovly <dev@crovly.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crovly/vue"
+  },
+  "homepage": "https://crovly.com",
+  "peerDependencies": {
+    "vue": ">=3.3"
+  },
+  "devDependencies": {
+    "vue": "^3.5.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
