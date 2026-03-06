@@ -30,11 +30,20 @@ export function loadCrovlyScript(): Promise<void> {
         resolve();
         return;
       }
-      existing.addEventListener("load", () => resolve());
+      // The load event may have already fired, so poll as fallback
+      let resolved = false;
+      const onDone = () => { if (!resolved) { resolved = true; resolve(); } };
+      existing.addEventListener("load", onDone);
       existing.addEventListener("error", () => {
-        loadPromise = null; // Allow retry on next call
+        if (resolved) return;
+        resolved = true;
+        loadPromise = null;
         reject(new Error("Failed to load Crovly widget script"));
       });
+      const poll = setInterval(() => {
+        if (window.Crovly) { clearInterval(poll); onDone(); }
+      }, 50);
+      setTimeout(() => { clearInterval(poll); }, 10000);
       return;
     }
 
