@@ -32,6 +32,8 @@ export interface CrovlyCaptchaEmits {
   (e: "error", code: CrovlyErrorCode, message: string): void;
   /** Emitted when the token expires and a refresh cycle begins. */
   (e: "expire"): void;
+  /** Emitted when all retries are exhausted and the service is unreachable. */
+  (e: "fallback", fallbackToken: string): void;
 }
 
 /** Options for the useCrovly composable. */

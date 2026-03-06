@@ -72,6 +72,8 @@ export const CrovlyCaptcha = defineComponent({
     error: (_code: CrovlyErrorCode, _message: string) => true,
     /** Emitted when the token expires and a refresh cycle begins. */
     expire: () => true,
+    /** Emitted when all retries are exhausted and the service is unreachable. */
+    fallback: (_fallbackToken: string) => true,
   },
 
   setup(props, { emit }) {
@@ -125,6 +127,7 @@ export const CrovlyCaptcha = defineComponent({
         onError: (code: string, message: string) =>
           emit("error", code as CrovlyErrorCode, message),
         onExpire: () => emit("expire"),
+        onFallback: (fallbackToken: string) => emit("fallback", fallbackToken),
       });
 
       if (!destroyed) {

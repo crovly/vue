@@ -31,9 +31,10 @@ export function loadCrovlyScript(): Promise<void> {
         return;
       }
       existing.addEventListener("load", () => resolve());
-      existing.addEventListener("error", () =>
-        reject(new Error("Failed to load Crovly widget script"))
-      );
+      existing.addEventListener("error", () => {
+        loadPromise = null; // Allow retry on next call
+        reject(new Error("Failed to load Crovly widget script"));
+      });
       return;
     }
 
@@ -43,9 +44,10 @@ export function loadCrovlyScript(): Promise<void> {
     script.async = true;
 
     script.addEventListener("load", () => resolve());
-    script.addEventListener("error", () =>
-      reject(new Error("Failed to load Crovly widget script"))
-    );
+    script.addEventListener("error", () => {
+      loadPromise = null; // Allow retry on next call
+      reject(new Error("Failed to load Crovly widget script"));
+    });
 
     document.head.appendChild(script);
   });

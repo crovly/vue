@@ -162,6 +162,7 @@ export default defineNuxtConfig({
 | `verify` | `token: string` | Emitted on successful verification |
 | `error` | `code: string, message: string` | Emitted on verification failure |
 | `expire` | - | Emitted when token expires |
+| `fallback` | `fallbackToken: string` | Emitted when service is unreachable after retries |
 
 ### `useCrovly(options)`
 

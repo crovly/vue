@@ -118,6 +118,11 @@ export function useCrovly(options: UseCrovlyOptions): UseCrovlyReturn {
         error.value = null;
         isLoading.value = true;
       },
+      onFallback: (fallbackToken: string) => {
+        token.value = fallbackToken;
+        error.value = null;
+        isLoading.value = false;
+      },
     });
 
     if (!destroyed) {
