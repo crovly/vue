@@ -25,6 +25,9 @@
     "url": "https://github.com/crovly/vue"
   },
   "homepage": "https://crovly.com",
+  "bugs": {
+    "url": "https://github.com/crovly/vue/issues"
+  },
   "peerDependencies": {
     "vue": ">=3.3"
   },
